@@ -1,8 +1,6 @@
 #!/usr/bin/env groovy
 pipeline {
   agent any
-  checkout scm
-  
     stages {
         stage('Build') {
             steps {
