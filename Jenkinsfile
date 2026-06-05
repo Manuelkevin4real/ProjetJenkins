@@ -1,8 +1,15 @@
 #!/usr/bin/env groovy
 pipeline {
   agent any
+  environment { 
+        CC = 'clang'
+        AWS_ACCESS_KEY_ID     = credentials('jenkins-aws-secret-key-id')
+    }
     stages {
         stage('Build') {
+            environment { 
+                DEBUG_FLAGS = '-g'
+            }
             steps {
                 sh 'make' 
                 archiveArtifacts artifacts: '**/target/*.jar', fingerprint: true 
